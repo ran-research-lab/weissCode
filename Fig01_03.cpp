@@ -12,5 +12,6 @@ int bad( int n )
 int main( )
 {
     cout << "bad is infinite recursion" << endl;
+    bad(14);
     return 0;
 }

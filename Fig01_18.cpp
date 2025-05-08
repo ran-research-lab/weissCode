@@ -8,27 +8,39 @@ class IntCell
 {
   public:
     explicit IntCell( int initialValue = 0 )
-      { storedValue = new int{ initialValue }; }
+      { 
+        storedValue = new int{ initialValue }; 
+        cout << "Int constructor!\n";
+      }
     
     ~IntCell( )
-      { delete storedValue; }
+      {
+        cout << "Destructor\n"; 
+        delete storedValue; 
+      }
 
-    IntCell( const IntCell & rhs )
-      { storedValue = new int{ *rhs.storedValue }; }
+    IntCell( const IntCell & rhs ) { 
+      storedValue = new int{ *rhs.storedValue }; 
+      cout << "Class constructor!\n";
+    }
 
     IntCell( IntCell && rhs ) : storedValue{ rhs.storedValue }
-      { rhs.storedValue = nullptr; }
+      { rhs.storedValue = nullptr; 
+      cout << "RValue copy constructor!\n";
+      }
     
     IntCell & operator= ( const IntCell & rhs )
     {
         if( this != & rhs )
             *storedValue = *rhs.storedValue; 
+        cout << "Assignment operator!\n";
         return *this;
     }
     
     IntCell & operator= ( IntCell && rhs )
     {
         std::swap( storedValue, rhs.storedValue );
+        cout << "Move operator!\n";
         return *this;
     }
     
