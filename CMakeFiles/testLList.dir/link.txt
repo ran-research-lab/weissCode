@@ -1,0 +1,1 @@
+/usr/bin/c++ -g CMakeFiles/testLList.dir/testLList.cpp.o -o testLList 

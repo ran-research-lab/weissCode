@@ -1,26 +1,26 @@
-#ifndef LIST_H
-#define LIST_H
+#ifndef LLIST_HPP
+#define LLIST_HPP
 
 #include <algorithm>
 using namespace std;
 
-template <typename Object>
-class List
+template <typename T>
+class LList
 {
   private:    
-    // The basic doubly linked list node.
-    // Nested inside of List, can be public
+    // The basic doubly linked LList node.
+    // Nested inside of LList, can be public
     // because the Node is itself private
     struct Node
     {
-        Object  data;
+        T  data;
         Node   *prev;
         Node   *next;
 
-        Node( const Object & d = Object{ }, Node * p = nullptr, Node * n = nullptr )
+        Node( const T & d = T{ }, Node * p = nullptr, Node * n = nullptr )
           : data{ d }, prev{ p }, next{ n } { }
         
-        Node( Object && d, Node * p = nullptr, Node * n = nullptr )
+        Node( T && d, Node * p = nullptr, Node * n = nullptr )
           : data{ std::move( d ) }, prev{ p }, next{ n } { }
     };
 
@@ -33,10 +33,10 @@ class List
         const_iterator( ) : current{ nullptr }
           { }
 
-        // Return the object stored at the current position.
+        // Return the T stored at the current position.
         // For const_iterator, this is an accessor with a
         // const reference return type.
-        const Object & operator* ( ) const
+        const T & operator* ( ) const
           { return retrieve( ); }
         
         const_iterator & operator++ ( )
@@ -77,7 +77,7 @@ class List
         // Protected helper in const_iterator that returns the object
         // stored at the current position. Can be called by all
         // three versions of operator* without any type conversions.
-        Object & retrieve( ) const
+        T & retrieve( ) const
           { return current->data; }
 
         // Protected constructor for const_iterator.
@@ -85,7 +85,7 @@ class List
         const_iterator( Node *p ) :  current{ p }
           { }
         
-        friend class List<Object>;
+        friend class LList<T>;
     };
 
     class iterator : public const_iterator
@@ -100,14 +100,14 @@ class List
         iterator( )
           { }
 
-        Object & operator* ( )
+        T & operator* ( )
           { return const_iterator::retrieve( ); }
 
-        // Return the object stored at the current position.
+        // Return the T stored at the current position.
         // For iterator, there is an accessor with a
         // const reference return type and a mutator with
         // a reference return type. The accessor is shown first.
-        const Object & operator* ( ) const
+        const T & operator* ( ) const
           { return const_iterator::operator*( ); }
         
         iterator & operator++ ( )
@@ -142,36 +142,36 @@ class List
         iterator( Node *p ) : const_iterator{ p }
           { }
 
-        friend class List<Object>;
+        friend class LList<T>;
     };
 
   public:
-    List( )
+    LList( )
       { init( ); }
 
-    ~List( )
+    ~LList( )
     {
         clear( );
         delete head;
         delete tail;
     }
 
-    List( const List & rhs )
+    LList( const LList & rhs )
     {
         init( );
         for( auto & x : rhs )
             push_back( x );
     }
 
-    List & operator= ( const List & rhs )
+    LList & operator= ( const LList & rhs )
     {
-        List copy = rhs;
+        LList copy = rhs;
         std::swap( *this, copy );
         return *this;
     }
 
     
-    List( List && rhs )
+    LList( LList && rhs )
       : theSize{ rhs.theSize }, head{ rhs.head }, tail{ rhs.tail }
     {
         rhs.theSize = 0;
@@ -179,16 +179,22 @@ class List
         rhs.tail = nullptr;
     }
    
-    List & operator= ( List && rhs )
-    {    
-        std::swap( theSize, rhs.theSize );
-        std::swap( head, rhs.head );
-        std::swap( tail, rhs.tail );
+    LList & operator= ( LList && rhs )
+    {   
+        theSize = rhs.theSize;
+        head = rhs.head;
+        tail = rhs.tail;
+        rhs.tail = rhs.head = nullptr;
+        rhs.theSize = 0;
+        // Arreglado por RAN
+        // std::swap( theSize, rhs.theSize );
+        // std::swap( head, rhs.head );
+        // std::swap( tail, rhs.tail );
         
         return *this;
     }
     
-    // Return iterator representing beginning of list.
+    // Return iterator representing beginning of LList.
     // Mutator version is first, then accessor version.
     iterator begin( )
       { return iterator( head->next ); }
@@ -196,7 +202,7 @@ class List
     const_iterator begin( ) const
       { return const_iterator( head->next ); }
 
-    // Return iterator representing endmarker of list.
+    // Return iterator representing endmarker of LList.
     // Mutator version is first, then accessor version.
     iterator end( )
       { return iterator( tail ); }
@@ -204,11 +210,11 @@ class List
     const_iterator end( ) const
       { return const_iterator( tail ); }
 
-    // Return number of elements currently in the list.
+    // Return number of elements currently in the LList.
     int size( ) const
       { return theSize; }
 
-    // Return true if the list is empty, false otherwise.
+    // Return true if the LList is empty, false otherwise.
     bool empty( ) const
       { return size( ) == 0; }
 
@@ -220,28 +226,28 @@ class List
  
     // front, back, push_front, push_back, pop_front, and pop_back
     // are the basic double-ended queue operations.
-    Object & front( )
+    T & front( )
       { return *begin( ); }
 
-    const Object & front( ) const
+    const T & front( ) const
       { return *begin( ); }
 
-    Object & back( )
+    T & back( )
       { return *--end( ); }
 
-    const Object & back( ) const
+    const T & back( ) const
       { return *--end( ); }
 
-    void push_front( const Object & x )
+    void push_front( const T & x )
       { insert( begin( ), x ); }
 
-    void push_back( const Object & x )
+    void push_back( const T & x )
       { insert( end( ), x ); }
 
-    void push_front( Object && x )
+    void push_front( T && x )
       { insert( begin( ), std::move( x ) ); }
 
-    void push_back( Object && x )
+    void push_back( T && x )
       { insert( end( ), std::move( x ) ); }
 
     void pop_front( )
@@ -251,7 +257,7 @@ class List
       { erase( --end( ) ); }
 
     // Insert x before itr.
-    iterator insert( iterator itr, const Object & x )
+    iterator insert( iterator itr, const T & x )
     {
         Node *p = itr.current;
         ++theSize;
@@ -259,7 +265,7 @@ class List
     }
 
     // Insert x before itr.
-    iterator insert( iterator itr, Object && x )
+    iterator insert( iterator itr, T && x )
     {
         Node *p = itr.current;
         ++theSize;
