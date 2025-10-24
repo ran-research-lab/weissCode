@@ -1,0 +1,1 @@
+/usr/bin/c++ -g CMakeFiles/testBST.dir/testBST.cpp.o -o testBST 

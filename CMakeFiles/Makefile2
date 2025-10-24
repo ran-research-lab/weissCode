@@ -64,6 +64,8 @@ CMAKE_BINARY_DIR = /workspaces/weissCode
 
 # The main recursive "all" target.
 all: CMakeFiles/testLList.dir/all
+all: CMakeFiles/testBST.dir/all
+all: CMakeFiles/testLLQueue.dir/all
 .PHONY : all
 
 # The main recursive "preinstall" target.
@@ -72,6 +74,8 @@ preinstall:
 
 # The main recursive "clean" target.
 clean: CMakeFiles/testLList.dir/clean
+clean: CMakeFiles/testBST.dir/clean
+clean: CMakeFiles/testLLQueue.dir/clean
 .PHONY : clean
 
 #=============================================================================
@@ -81,7 +85,7 @@ clean: CMakeFiles/testLList.dir/clean
 CMakeFiles/testLList.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/testLList.dir/build.make CMakeFiles/testLList.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/testLList.dir/build.make CMakeFiles/testLList.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/workspaces/weissCode/CMakeFiles --progress-num=1,2 "Built target testLList"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/workspaces/weissCode/CMakeFiles --progress-num=5,6 "Built target testLList"
 .PHONY : CMakeFiles/testLList.dir/all
 
 # Build rule for subdir invocation for target.
@@ -99,6 +103,58 @@ testLList: CMakeFiles/testLList.dir/rule
 CMakeFiles/testLList.dir/clean:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/testLList.dir/build.make CMakeFiles/testLList.dir/clean
 .PHONY : CMakeFiles/testLList.dir/clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/testBST.dir
+
+# All Build rule for target.
+CMakeFiles/testBST.dir/all:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/testBST.dir/build.make CMakeFiles/testBST.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/testBST.dir/build.make CMakeFiles/testBST.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/workspaces/weissCode/CMakeFiles --progress-num=1,2 "Built target testBST"
+.PHONY : CMakeFiles/testBST.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/testBST.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /workspaces/weissCode/CMakeFiles 2
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/testBST.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /workspaces/weissCode/CMakeFiles 0
+.PHONY : CMakeFiles/testBST.dir/rule
+
+# Convenience name for target.
+testBST: CMakeFiles/testBST.dir/rule
+.PHONY : testBST
+
+# clean rule for target.
+CMakeFiles/testBST.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/testBST.dir/build.make CMakeFiles/testBST.dir/clean
+.PHONY : CMakeFiles/testBST.dir/clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/testLLQueue.dir
+
+# All Build rule for target.
+CMakeFiles/testLLQueue.dir/all:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/testLLQueue.dir/build.make CMakeFiles/testLLQueue.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/testLLQueue.dir/build.make CMakeFiles/testLLQueue.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/workspaces/weissCode/CMakeFiles --progress-num=3,4 "Built target testLLQueue"
+.PHONY : CMakeFiles/testLLQueue.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/testLLQueue.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /workspaces/weissCode/CMakeFiles 2
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/testLLQueue.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /workspaces/weissCode/CMakeFiles 0
+.PHONY : CMakeFiles/testLLQueue.dir/rule
+
+# Convenience name for target.
+testLLQueue: CMakeFiles/testLLQueue.dir/rule
+.PHONY : testLLQueue
+
+# clean rule for target.
+CMakeFiles/testLLQueue.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/testLLQueue.dir/build.make CMakeFiles/testLLQueue.dir/clean
+.PHONY : CMakeFiles/testLLQueue.dir/clean
 
 #=============================================================================
 # Special targets to cleanup operation of make.

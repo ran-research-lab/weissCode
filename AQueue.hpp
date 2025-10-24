@@ -5,19 +5,19 @@
 
 template <typename T> class Queue {
 private:
-  T *data;    // dynamic array
-  int _front; // index of front element
-  int _back;  // index of last element
-  int aSize;  // current number of elements
-  int cap;    // capacity of array
+  T *a;
+  int _front;
+  int _back;
+  int aSize;
+  int cap;
 
   void resize(int newCap) {
-    T *newData = new T[newCap];
+    T *newa = new T[newCap];
     for (int i = 0; i < aSize; i++) {
-      newData[i] = data[(_front + i) % cap];
+      newa[i] = a[(_front + i) % cap];
     }
-    delete[] data;
-    data = newData;
+    delete[] a;
+    a = newa;
     cap = newCap;
     _front = 0;
     _back = (aSize == 0 ? 0 : aSize - 1);
@@ -25,9 +25,9 @@ private:
 
 public:
   Queue(int initCap = 8)
-      : data(new T[initCap]), _front(0), _back(0), aSize(0), cap(initCap) {}
+      : a(new T[initCap]), _front(0), _back(0), aSize(0), cap(initCap) {}
 
-  ~Queue() { delete[] data; }
+  ~Queue() { delete[] a; }
 
   bool empty() const { return aSize == 0; }
 
@@ -42,7 +42,7 @@ public:
     } else {
       _back = (_back + 1) % cap;
     }
-    data[_back] = value;
+    a[_back] = value;
     aSize++;
   }
 
@@ -60,6 +60,6 @@ public:
   T front() {
     if (empty())
       throw std::out_of_range("front from empty queue");
-    return data[_front];
+    return a[_front];
   }
 };

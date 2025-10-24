@@ -129,6 +129,80 @@ testLList/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/testLList.dir/build.make CMakeFiles/testLList.dir/build
 .PHONY : testLList/fast
 
+#=============================================================================
+# Target rules for targets named testBST
+
+# Build rule for target.
+testBST: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 testBST
+.PHONY : testBST
+
+# fast build rule for target.
+testBST/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/testBST.dir/build.make CMakeFiles/testBST.dir/build
+.PHONY : testBST/fast
+
+#=============================================================================
+# Target rules for targets named testLLQueue
+
+# Build rule for target.
+testLLQueue: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 testLLQueue
+.PHONY : testLLQueue
+
+# fast build rule for target.
+testLLQueue/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/testLLQueue.dir/build.make CMakeFiles/testLLQueue.dir/build
+.PHONY : testLLQueue/fast
+
+testBST.o: testBST.cpp.o
+.PHONY : testBST.o
+
+# target to build an object file
+testBST.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/testBST.dir/build.make CMakeFiles/testBST.dir/testBST.cpp.o
+.PHONY : testBST.cpp.o
+
+testBST.i: testBST.cpp.i
+.PHONY : testBST.i
+
+# target to preprocess a source file
+testBST.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/testBST.dir/build.make CMakeFiles/testBST.dir/testBST.cpp.i
+.PHONY : testBST.cpp.i
+
+testBST.s: testBST.cpp.s
+.PHONY : testBST.s
+
+# target to generate assembly for a file
+testBST.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/testBST.dir/build.make CMakeFiles/testBST.dir/testBST.cpp.s
+.PHONY : testBST.cpp.s
+
+testLLQueue.o: testLLQueue.cpp.o
+.PHONY : testLLQueue.o
+
+# target to build an object file
+testLLQueue.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/testLLQueue.dir/build.make CMakeFiles/testLLQueue.dir/testLLQueue.cpp.o
+.PHONY : testLLQueue.cpp.o
+
+testLLQueue.i: testLLQueue.cpp.i
+.PHONY : testLLQueue.i
+
+# target to preprocess a source file
+testLLQueue.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/testLLQueue.dir/build.make CMakeFiles/testLLQueue.dir/testLLQueue.cpp.i
+.PHONY : testLLQueue.cpp.i
+
+testLLQueue.s: testLLQueue.cpp.s
+.PHONY : testLLQueue.s
+
+# target to generate assembly for a file
+testLLQueue.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/testLLQueue.dir/build.make CMakeFiles/testLLQueue.dir/testLLQueue.cpp.s
+.PHONY : testLLQueue.cpp.s
+
 testLList.o: testLList.cpp.o
 .PHONY : testLList.o
 
@@ -161,7 +235,15 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
+	@echo "... testBST"
+	@echo "... testLLQueue"
 	@echo "... testLList"
+	@echo "... testBST.o"
+	@echo "... testBST.i"
+	@echo "... testBST.s"
+	@echo "... testLLQueue.o"
+	@echo "... testLLQueue.i"
+	@echo "... testLLQueue.s"
 	@echo "... testLList.o"
 	@echo "... testLList.i"
 	@echo "... testLList.s"

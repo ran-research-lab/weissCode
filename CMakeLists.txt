@@ -9,3 +9,6 @@ add_compile_options(-fmax-errors=1)
 
 
 add_executable(testLList testLList.cpp)
+add_executable(testBST testBST.cpp)
+
+add_executable(testLLQueue testLLQueue.cpp)

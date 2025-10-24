@@ -1,3 +1,5 @@
 /workspaces/weissCode/CMakeFiles/testLList.dir
+/workspaces/weissCode/CMakeFiles/testBST.dir
+/workspaces/weissCode/CMakeFiles/testLLQueue.dir
 /workspaces/weissCode/CMakeFiles/edit_cache.dir
 /workspaces/weissCode/CMakeFiles/rebuild_cache.dir

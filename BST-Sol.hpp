@@ -3,6 +3,7 @@
 
 #include <algorithm>
 #include <iostream>
+#include <queue>
 #include <sstream>
 #include <stdexcept>
 using namespace std;
@@ -32,6 +33,39 @@ template <typename T> string toStr(const T &value) {
 template <typename Comparable> class BinarySearchTree {
 public:
   BinarySearchTree() : root{nullptr} {}
+
+  string BFT() const {
+    queue<pair<BinaryNode *, int>> q;
+    string st = "[";
+    if (root != nullptr) {
+      q.push({root, 0});
+    }
+    int currentLevel = -1;
+    int nodesThisLevel = 0;
+    while (!q.empty()) {
+      auto u = q.front();
+      q.pop();
+      if (u.second != currentLevel) {
+        currentLevel = u.second;
+        nodesThisLevel = 0;
+        if (currentLevel > 0)
+          st = st + "],";
+        st = st + "[";
+      }
+      if (nodesThisLevel > 0)
+        st = st + ",";
+      st = st + toStr(u.first->element);
+      if (u.first->left != nullptr)
+        q.push({u.first->left, u.second + 1});
+      if (u.first->right != nullptr)
+        q.push({u.first->right, u.second + 1});
+      nodesThisLevel++;
+    }
+    if (currentLevel > 0)
+      st = st + "]";
+    st = st + "]";
+    return st;
+  }
 
   // Copy constructor
   BinarySearchTree(const BinarySearchTree &rhs) : root{nullptr} {
