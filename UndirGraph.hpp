@@ -3,6 +3,7 @@
 #include <list>
 #include <map>
 #include <random>
+#include <set>
 #include <vector>
 using namespace std;
 
@@ -61,6 +62,13 @@ public:
   }
 
   list<int> getNeighbors(int idx) { return adjList[idx]; }
+
+  set<int> getNeighborsAsSet(int idx) {
+    set<int> res;
+    for (auto e : adjList[idx])
+      res.insert(e);
+    return res;
+  }
 
   int getNumberVertices() { return adjList.size(); }
 
@@ -126,7 +134,87 @@ public:
            (p0.second - p1.second) * (p0.second - p1.second);
   }
 
+  void print(const set<int> &s) {
+    for (auto e : s) {
+      cout << e << " ";
+    }
+  }
+
   void trim() {
+    for (int i = 0; i < G.size(); i++) {
+      set<int> toDel;
+      auto uPos = G.getVertex(i);
+      // auto ne = G.getNeighbors(i);
+
+      set<int> neighboors_i = G.getNeighborsAsSet(i); //(ne.begin(), ne.end());
+
+      cout << "neightboors of " << i << " are: ";
+      for (auto j : neighboors_i) {
+        cout << j << " ";
+      }
+      cout << endl;
+      for (auto j : neighboors_i) {
+        // cout << j << " ";
+        set<int> neighboors_j = G.getNeighborsAsSet(j);
+        auto vPos = G.getVertex(j);
+
+        // for (auto f : G.getNeighbors(j))
+        //   neighboors_j.insert(f);
+        cout << "neightboors of " << j << " are: ";
+        for (auto f : neighboors_j) {
+          cout << f << " ";
+        }
+        cout << endl;
+        set<int> inter;
+        for (auto f : neighboors_i) {
+          if (neighboors_j.find(f) != neighboors_j.end() &&
+              toDel.find(f) == toDel.end())
+            inter.insert(f);
+        }
+        // cout << "intersection: ";
+        // print(inter);
+
+        for (auto f : inter) {
+          auto wPos = G.getVertex(f);
+          if (dist(uPos, wPos) < dist(uPos, vPos) &&
+              dist(vPos, wPos) < dist(uPos, vPos)) {
+            // cout << "\ndel: ()" << i << "," << j << ") becuase of " << f
+            //  << endl;
+            toDel.insert(j);
+          }
+        }
+        cout << endl;
+      }
+      cout << "\n";
+      for (auto e : toDel) {
+        G.deleteEdge(i, e);
+      }
+
+      // //   auto itpreEnd = li.end();
+      // vector<int> toDel;
+      // //   itpreEnd--;
+      // for (auto it = li.begin(); it != li.end(); it++) {
+      //   for (auto jt = li.begin(); jt != li.end(); jt++) {
+
+      //     if (it != jt &&
+      //         dist(uPos, G.getVertex(*jt)) < dist(uPos, G.getVertex(*it))
+      //         && dist(G.getVertex(*it), G.getVertex(*jt)) <
+      //             dist(uPos, G.getVertex(*it))) {
+      //       toDel.push_back(*it);
+      //       // cout << "deleting edge (" << i << "," << *it << ") because
+      //       of
+      //       "
+      //       //      << *jt << "\n";
+      //     }
+      //   }
+      // }
+      // for (auto e : toDel) {
+      //   G.deleteEdge(i, e);
+      // }
+    }
+  }
+
+  void trimOLD() {
     for (int i = 0; i < G.size(); i++) {
       auto uPos = G.getVertex(i);
       auto li = G.getNeighbors(i);
@@ -141,11 +229,14 @@ public:
               dist(G.getVertex(*it), G.getVertex(*jt)) <
                   dist(uPos, G.getVertex(*it))) {
             toDel.push_back(*it);
+            // cout << "deleting edge (" << i << "," << *it << ") because of "
+            //      << *jt << "\n";
           }
         }
       }
-      for (auto e : toDel)
+      for (auto e : toDel) {
         G.deleteEdge(i, e);
+      }
     }
   }
 

@@ -27,7 +27,7 @@ int main() {
   //   G.deleteVertex(2);
   //   G.print();
 
-  WirelessNetwork W(10, 500);
+  WirelessNetwork W(2, 10);
   W.trim();
   W.toDot();
 }
