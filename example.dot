@@ -1,0 +1,11 @@
+graph G {
+  node [shape=rectangle, width=0.05, height=0.05 ];
+
+  A [pos = "0.0,0.0!" label=""];
+  B [pos = "1.0,0.0!" label=""];
+  C [pos = "0.5,1.5!" label=""];
+
+  A -- B;
+  B -- C;
+  A -- C;
+}
